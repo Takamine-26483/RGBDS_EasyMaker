@@ -101,7 +101,7 @@ namespace RGBDS_EasyMaker
 
 		static string[] GetAsmPath()
 		{
-			var dir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+			var dir = Path.GetDirectoryName(Environment.CurrentDirectory);
 
 			var ls = Directory.GetFiles(dir, "*.asm", SearchOption.AllDirectories);
 			ls = ls.Concat(Directory.GetFiles(dir, "*.s", SearchOption.AllDirectories)).ToArray();

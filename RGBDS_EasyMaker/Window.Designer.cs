@@ -31,6 +31,7 @@
 			this.TBasm = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.label7 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
 			this.TBfix = new System.Windows.Forms.TextBox();
 			this.TBlink = new System.Windows.Forms.TextBox();
@@ -39,10 +40,9 @@
 			this.btnSaveClose = new System.Windows.Forms.Button();
 			this.btnClose = new System.Windows.Forms.Button();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.label9 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label8 = new System.Windows.Forms.Label();
-			this.label7 = new System.Windows.Forms.Label();
-			this.label9 = new System.Windows.Forms.Label();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.SuspendLayout();
@@ -83,6 +83,16 @@
 			this.groupBox1.TabIndex = 2;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "コマンドライン引数";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Font = new System.Drawing.Font("MS UI Gothic", 14F);
+			this.label7.Location = new System.Drawing.Point(714, 61);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(75, 19);
+			this.label7.TabIndex = 9;
+			this.label7.Text = "+ \" *.o\"";
 			// 
 			// label4
 			// 
@@ -165,6 +175,16 @@
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "使い方";
 			// 
+			// label9
+			// 
+			this.label9.AutoSize = true;
+			this.label9.Font = new System.Drawing.Font("MS UI Gothic", 14F);
+			this.label9.Location = new System.Drawing.Point(86, 47);
+			this.label9.Name = "label9";
+			this.label9.Size = new System.Drawing.Size(372, 19);
+			this.label9.TabIndex = 4;
+			this.label9.Text = "・rgbasm→rgblink→rgbfixの順で実行されます。";
+			// 
 			// label5
 			// 
 			this.label5.AutoSize = true;
@@ -173,7 +193,7 @@
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(637, 38);
 			this.label5.TabIndex = 2;
-			this.label5.Text = "・rgbasmはアプリのディレクトリ内と、\r\n　そこから見えるフォルダ内の全てのasmﾌｧｲﾙ(*.asm or *.s)を対象にアセンブルします";
+			this.label5.Text = "・rgbasmはカレントディレクトリ内と、\r\n　そこから見えるフォルダ内の全てのasmﾌｧｲﾙ(*.asm or *.s)を対象にアセンブルします";
 			// 
 			// label8
 			// 
@@ -184,26 +204,6 @@
 			this.label8.Size = new System.Drawing.Size(778, 19);
 			this.label8.TabIndex = 1;
 			this.label8.Text = "・このウィンドウで引数を設定し保存して終了→コマンドライン上から/buildを引数にしてこのアプリを実行。";
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Font = new System.Drawing.Font("MS UI Gothic", 14F);
-			this.label7.Location = new System.Drawing.Point(714, 61);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(75, 19);
-			this.label7.TabIndex = 9;
-			this.label7.Text = "+ \" *.o\"";
-			// 
-			// label9
-			// 
-			this.label9.AutoSize = true;
-			this.label9.Font = new System.Drawing.Font("MS UI Gothic", 14F);
-			this.label9.Location = new System.Drawing.Point(86, 47);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(372, 19);
-			this.label9.TabIndex = 4;
-			this.label9.Text = "・rgbasm→rgblink→rgbfixの順で実行されます。";
 			// 
 			// Window
 			// 
@@ -217,7 +217,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.Name = "Window";
-			this.Text = "RGBDS簡易ビルダー";
+			this.Text = "RGBDS簡易ビルダー v1.0";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
