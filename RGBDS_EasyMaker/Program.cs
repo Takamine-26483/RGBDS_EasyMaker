@@ -101,17 +101,18 @@ namespace RGBDS_EasyMaker
 
 		static string[] GetAsmPath()
 		{
-			var dir = Path.GetDirectoryName(Environment.CurrentDirectory);
+			var dir = Environment.CurrentDirectory;
 
-			var ls = Directory.GetFiles(dir, "*.asm", SearchOption.AllDirectories);
-			ls = ls.Concat(Directory.GetFiles(dir, "*.s", SearchOption.AllDirectories)).ToArray();
+			Console.WriteLine(Environment.CurrentDirectory);
+			var ls = Directory.GetFiles(dir, "*.asm", SearchOption.AllDirectories)
+				.Concat(Directory.GetFiles(dir, "*.s", SearchOption.AllDirectories)).ToArray();
+
 			{
 				Uri udir = new Uri(dir + "\\");
 				for (int i = 0; i < ls.Length; ++i)
 					ls[i] = udir.MakeRelativeUri(new Uri(ls[i])).ToString();
 			}
 			Array.Sort(ls);
-
 			return ls;
 		}
 
