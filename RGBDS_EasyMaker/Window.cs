@@ -30,7 +30,7 @@ namespace RGBDS_EasyMaker
 		static public (string asm,string link,string fix, bool err) ReadExtraArgs()
 		{
 			const string asm_default = "";
-			const string link_default = "-o _GBPROGRAM_.gb";
+			const string link_default = "-m _GBPROGRAM_.map -n _GBPROGRAM_.sym -o _GBPROGRAM_.gb";
 			const string fix_default = "-v -p 0 _GBPROGRAM_.gb";
 
 			if (File.Exists(filename))
