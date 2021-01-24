@@ -103,7 +103,6 @@ namespace RGBDS_EasyMaker
 		{
 			var dir = Environment.CurrentDirectory;
 
-			Console.WriteLine(Environment.CurrentDirectory);
 			var ls = Directory.GetFiles(dir, "*.asm", SearchOption.AllDirectories)
 				.Concat(Directory.GetFiles(dir, "*.s", SearchOption.AllDirectories)).ToArray();
 
