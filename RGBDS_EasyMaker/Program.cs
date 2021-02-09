@@ -14,18 +14,16 @@ namespace RGBDS_EasyMaker
 		/// アプリケーションのメイン エントリ ポイントです。
 		/// </summary>
 		[STAThread]
-		static void Main(string[] args)
+		static int Main(string[] args)
 		{
 			if (args.Length >= 1)
 				if (args[0] == "/build")
-				{
-					Builder.Build();
-					return;
-				}
+					return Builder.Build();
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new Window());
+			return 0;
 		}
 	}
 
@@ -33,11 +31,13 @@ namespace RGBDS_EasyMaker
 
 	static class Builder
 	{
-		static public void Build()
+		static public int Build()
 		{
 			void WriteStep(in string cap, in int now, in int max) => Console.WriteLine(cap + "(" + now.ToString() + "/" + max.ToString() + ")");
 
 			//**********************************************************************************************
+
+			var responce = 0;
 
 			try
 			{
@@ -59,10 +59,12 @@ namespace RGBDS_EasyMaker
 			catch
 			{
 				Console.WriteLine("＜！＞エラーが発生しました。ビルドがここで中止されます。");
+				responce = 1;
 			}
 #if DEBUG
 			Console.ReadKey();
 #endif
+			return responce;
 		}
 
 		static void DoRGBLink(in string arg, in string[] objlist)
