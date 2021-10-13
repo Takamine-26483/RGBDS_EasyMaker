@@ -33,38 +33,29 @@ namespace RGBDS_EasyMaker
 	{
 		static public int Build()
 		{
-			void WriteStep(in string cap, in int now, in int max) => Console.WriteLine(cap + "(" + now.ToString() + "/" + max.ToString() + ")");
-
-			//**********************************************************************************************
-
-			var responce = 0;
-
 			try
 			{
 				var args = new Window().GetArgs();
 
-
-				WriteStep("★rgbasm実行", 1, 3);
-
+				Console.WriteLine("\n◆ rgbasm  実行(1/3) ◆");
 				var objlist = DoRGBAsm(args.asm);
-
-				WriteStep("★rgblink実行", 2, 3);
-
+				Console.WriteLine("\n◆ rgblink 実行(2/3) ◆");
 				DoRGBLink(args.link, (string[])objlist.Clone());
-
-				WriteStep("★rgbfix実行", 3, 3);
-
+				Console.WriteLine("\n◆ rgbfix  実行(3/3) ◆");
 				DoRGBFix(args.fix);
 			}
 			catch
 			{
 				Console.WriteLine("＜！＞エラーが発生しました。ビルドがここで中止されます。");
-				responce = 1;
+#if DEBUG
+				Console.ReadKey();
+#endif
+				return 1;
 			}
 #if DEBUG
 			Console.ReadKey();
 #endif
-			return responce;
+			return 0;
 		}
 
 		static void DoRGBLink(in string arg, in string[] objlist)
