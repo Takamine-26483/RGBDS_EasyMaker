@@ -68,10 +68,7 @@ namespace RGBDS_EasyMaker
 		}
 
 
-		static void DoRGBFix(in string arg)
-		{
-			Execute("rgbfix", arg);
-		}
+		static void DoRGBFix(string arg) => Execute("rgbfix", arg);
 
 
 
