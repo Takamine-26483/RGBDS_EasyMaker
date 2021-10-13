@@ -20,18 +20,9 @@ namespace RGBDS_EasyMaker
 		{
 			InitializeComponent();
 
-			bool err;
-			(TBasm.Text, TBlink.Text,TBfix.Text , err) = ReadExtraArgs();
-			if(err)
-				MessageBox.Show("設定ファイルの読み込みに失敗しました。初期設定で起動します。", "読み込みエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
-		}
-
-
-		static public (string asm,string link,string fix, bool err) ReadExtraArgs()
-		{
-			const string asm_default = "";
-			const string link_default = "-m _GBPROGRAM_.map -n _GBPROGRAM_.sym -o _GBPROGRAM_.gb";
-			const string fix_default = "-v -p 0 _GBPROGRAM_.gb";
+			TBasm.Text = "";
+			TBlink.Text = "-m _GBPROGRAM_.map -n _GBPROGRAM_.sym -o _GBPROGRAM_.gb";
+			TBfix.Text = "-v -p 0 _GBPROGRAM_.gb";
 
 			if (File.Exists(filename))
 			{
@@ -39,17 +30,22 @@ namespace RGBDS_EasyMaker
 				{
 					var lines = File.ReadAllLines(filename);
 					if (lines.Length >= 3)
-						return (lines[0], lines[1], lines[2], false);
+					{
+						TBasm.Text = lines[0];
+						TBlink.Text = lines[1];
+						TBfix.Text = lines[2];
+					}
 					else
 						throw new IOException();
 				}
-				catch (Exception)
+				catch
 				{
-					return (asm_default, link_default, fix_default, true);
+					MessageBox.Show("設定ファイルの読み込みに失敗しました。初期設定で起動します。", "読み込みエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
-			return (asm_default, link_default, fix_default, false);
 		}
+
+		public (string asm, string link, string fix) GetArgs() => (TBasm.Text, TBlink.Text, TBfix.Text);
 
 		private void btnSaveClose_Click(object sender, EventArgs e)
 		{

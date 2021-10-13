@@ -41,7 +41,7 @@ namespace RGBDS_EasyMaker
 
 			try
 			{
-				var args = Window.ReadExtraArgs();
+				var args = new Window().GetArgs();
 
 
 				WriteStep("★rgbasm実行", 1, 3);
