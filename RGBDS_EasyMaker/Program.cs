@@ -76,7 +76,7 @@ namespace RGBDS_EasyMaker
 		static string[] DoRGBAsm(in string arg,string[] asmPathes)
 		{
 			foreach (var s in asmPathes)
-				Execute("rgbasm", arg + " " + "-o " + ToDoubleQuotes(Path.ChangeExtension(s, ".o")) + " " + ToDoubleQuotes(s));
+				Execute("rgbasm", arg + " -o \"" + Path.ChangeExtension(s, ".o") + "\" \"" + s + "\"");
 
 
 			for (int i = 0; i < asmPathes.Length; ++i)
@@ -84,8 +84,6 @@ namespace RGBDS_EasyMaker
 
 			return asmPathes;
 		}
-
-		static string ToDoubleQuotes(in string str) => "\"" + str + "\"";
 
 
 		static int Execute(in string command, in string arg)
