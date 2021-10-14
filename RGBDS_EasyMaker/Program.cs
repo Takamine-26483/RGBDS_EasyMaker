@@ -58,14 +58,8 @@ namespace RGBDS_EasyMaker
 			return 0;
 		}
 
-		static void DoRGBLink(in string arg, in string[] objlist)
-		{
-
-			for (int i = 0; i < objlist.Length; ++i)
-				objlist[i] = ToDoubleQuotes(objlist[i]);
-
-			Execute("rgblink", arg + " " + string.Join(" ", objlist));
-		}
+		static void DoRGBLink(string arg, string[] objlist)
+		=> Execute("rgblink", arg + " " + string.Join(" ", objlist.Select(x => "\"" + x + "\"")));
 
 
 		static void DoRGBFix(string arg) => Execute("rgbfix", arg);
