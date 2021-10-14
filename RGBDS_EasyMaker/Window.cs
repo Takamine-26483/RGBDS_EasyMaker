@@ -49,13 +49,20 @@ namespace RGBDS_EasyMaker
 
 		private void btnSaveClose_Click(object sender, EventArgs e)
 		{
+			RETRY:
 			try
 			{
 				File.WriteAllText(filename, string.Join("\n", TBasm.Text, TBlink.Text, TBfix.Text));
 			}
-			catch(Exception)
+			catch
 			{
-				MessageBox.Show("設定ファイルの保存に失敗しました。", "書き込みエラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				switch(MessageBox.Show("設定ファイルの保存に失敗しました。\n再試行しますか？", "書き込みエラー", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Error))
+				{
+					case DialogResult.Yes:
+						goto RETRY;
+					case DialogResult.Cancel:
+						return;//★breakではない。
+				}
 			}
 
 			Close();
