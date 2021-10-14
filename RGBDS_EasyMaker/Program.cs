@@ -76,7 +76,7 @@ namespace RGBDS_EasyMaker
 		static string[] DoRGBAsm(in string arg)
 		{
 
-			var ls = GetAsmPath();
+			var ls = GetAsmPathes();
 
 
 			foreach (var s in ls)
@@ -89,21 +89,12 @@ namespace RGBDS_EasyMaker
 			return ls;
 		}
 
-		static string[] GetAsmPath()
-		{
-			var dir = Environment.CurrentDirectory;
-
-			var ls = Directory.GetFiles(dir, "*.asm", SearchOption.AllDirectories)
-				.Concat(Directory.GetFiles(dir, "*.s", SearchOption.AllDirectories)).ToArray();
-
-			{
-				Uri udir = new Uri(dir + "\\");
-				for (int i = 0; i < ls.Length; ++i)
-					ls[i] = udir.MakeRelativeUri(new Uri(ls[i])).ToString();
-			}
-			Array.Sort(ls);
-			return ls;
-		}
+		static string[] GetAsmPathes()
+		=> Directory.GetFiles(Environment.CurrentDirectory, "*.asm", SearchOption.AllDirectories)
+					.Concat(Directory.GetFiles(Environment.CurrentDirectory, "*.s", SearchOption.AllDirectories))
+					.Select(x => new Uri(Environment.CurrentDirectory + "\\").MakeRelativeUri(new Uri(x)).ToString())
+					.OrderBy(x => x)
+					.ToArray();
 
 		static string ToDoubleQuotes(in string str) => "\"" + str + "\"";
 
