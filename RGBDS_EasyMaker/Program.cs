@@ -36,9 +36,15 @@ namespace RGBDS_EasyMaker
 			try
 			{
 				var args = new Window().GetArgs();
+				var asmPathes = Directory.GetFiles(Environment.CurrentDirectory, "*.asm", SearchOption.AllDirectories)
+					.Concat(Directory.GetFiles(Environment.CurrentDirectory, "*.s", SearchOption.AllDirectories))
+					.Select(x => new Uri(Environment.CurrentDirectory + "\\").MakeRelativeUri(new Uri(x)).ToString())
+					.OrderBy(x => x)
+					.ToArray();
+
 
 				Console.WriteLine("\n◆ rgbasm  実行(1/3) ◆");
-				var objlist = DoRGBAsm(args.asm);
+				var objlist = DoRGBAsm(args.asm, asmPathes);
 				Console.WriteLine("\n◆ rgblink 実行(2/3) ◆");
 				DoRGBLink(args.link, (string[])objlist.Clone());
 				Console.WriteLine("\n◆ rgbfix  実行(3/3) ◆");
@@ -67,28 +73,17 @@ namespace RGBDS_EasyMaker
 
 
 
-		static string[] DoRGBAsm(in string arg)
+		static string[] DoRGBAsm(in string arg,string[] asmPathes)
 		{
-
-			var ls = GetAsmPathes();
-
-
-			foreach (var s in ls)
+			foreach (var s in asmPathes)
 				Execute("rgbasm", arg + " " + "-o " + ToDoubleQuotes(Path.ChangeExtension(s, ".o")) + " " + ToDoubleQuotes(s));
 
 
-			for (int i = 0; i < ls.Length; ++i)
-				ls[i] = Path.ChangeExtension(ls[i], ".o");
+			for (int i = 0; i < asmPathes.Length; ++i)
+				asmPathes[i] = Path.ChangeExtension(asmPathes[i], ".o");
 
-			return ls;
+			return asmPathes;
 		}
-
-		static string[] GetAsmPathes()
-		=> Directory.GetFiles(Environment.CurrentDirectory, "*.asm", SearchOption.AllDirectories)
-					.Concat(Directory.GetFiles(Environment.CurrentDirectory, "*.s", SearchOption.AllDirectories))
-					.Select(x => new Uri(Environment.CurrentDirectory + "\\").MakeRelativeUri(new Uri(x)).ToString())
-					.OrderBy(x => x)
-					.ToArray();
 
 		static string ToDoubleQuotes(in string str) => "\"" + str + "\"";
 
