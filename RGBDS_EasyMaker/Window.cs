@@ -29,14 +29,9 @@ namespace RGBDS_EasyMaker
 				try
 				{
 					var lines = File.ReadAllLines(FILENAME);
-					if (lines.Length >= 3)
-					{
-						TBasm.Text = lines[0];
-						TBlink.Text = lines[1];
-						TBfix.Text = lines[2];
-					}
-					else
-						throw new IOException();
+					TBasm.Text = lines[0];
+					TBlink.Text = lines[1];
+					TBfix.Text = lines[2];
 				}
 				catch
 				{
