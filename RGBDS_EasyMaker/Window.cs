@@ -13,7 +13,7 @@ namespace RGBDS_EasyMaker
 {
 	public partial class Window : Form
 	{
-		const string filename = "RgbdsES.ini";
+		const string FILENAME = "RgbdsES.ini";
 		
 
 		public Window()
@@ -24,11 +24,11 @@ namespace RGBDS_EasyMaker
 			TBlink.Text = "-m _GBPROGRAM_.map -n _GBPROGRAM_.sym -o _GBPROGRAM_.gb";
 			TBfix.Text = "-v -p 0 _GBPROGRAM_.gb";
 
-			if (File.Exists(filename))
+			if (File.Exists(FILENAME))
 			{
 				try
 				{
-					var lines = File.ReadAllLines(filename);
+					var lines = File.ReadAllLines(FILENAME);
 					if (lines.Length >= 3)
 					{
 						TBasm.Text = lines[0];
@@ -52,7 +52,7 @@ namespace RGBDS_EasyMaker
 			RETRY:
 			try
 			{
-				File.WriteAllText(filename, string.Join("\n", TBasm.Text, TBlink.Text, TBfix.Text));
+				File.WriteAllText(FILENAME, string.Join("\n", TBasm.Text, TBlink.Text, TBfix.Text));
 			}
 			catch
 			{
