@@ -78,7 +78,7 @@ namespace RGBDS_EasyMaker
 				Execute("rgbasm", arg + " -o \"" + Path.ChangeExtension(path, ".o") + "\" \"" + path + "\"");
 		}
 
-		static int Execute(in string command, in string arg)
+		static int Execute(string command, string arg)
 		{
 			Console.WriteLine(">" + command + " " + arg);
 			var process = Process.Start(new ProcessStartInfo(command, arg)
