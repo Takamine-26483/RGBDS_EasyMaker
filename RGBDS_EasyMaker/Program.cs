@@ -44,9 +44,9 @@ namespace RGBDS_EasyMaker
 
 
 				Console.WriteLine("\n◆ rgbasm  実行(1/3) ◆");
-				var objlist = DoRGBAsm(args.asm, asmPathes);
+				DoRGBAsm(args.asm, asmPathes);
 				Console.WriteLine("\n◆ rgblink 実行(2/3) ◆");
-				DoRGBLink(args.link, (string[])objlist.Clone());
+				DoRGBLink(args.link, asmPathes.Select(x => x = Path.ChangeExtension(x, ".o")).ToArray());
 				Console.WriteLine("\n◆ rgbfix  実行(3/3) ◆");
 				DoRGBFix(args.fix);
 			}
@@ -65,26 +65,18 @@ namespace RGBDS_EasyMaker
 		}
 
 		static void DoRGBLink(string arg, string[] objlist)
-		=> Execute("rgblink", arg + " " + string.Join(" ", objlist.Select(x => "\"" + x + "\"")));
+			=> Execute("rgblink", arg + " " + string.Join(" ", objlist.Select(x => "\"" + x + "\"")));
 
 
-		static void DoRGBFix(string arg) => Execute("rgbfix", arg);
+		static void DoRGBFix(string arg)
+			=> Execute("rgbfix", arg);
 
 
-
-
-		static string[] DoRGBAsm(in string arg,string[] asmPathes)
+		static void DoRGBAsm(string arg, string[] asmPathes)
 		{
-			foreach (var s in asmPathes)
-				Execute("rgbasm", arg + " -o \"" + Path.ChangeExtension(s, ".o") + "\" \"" + s + "\"");
-
-
-			for (int i = 0; i < asmPathes.Length; ++i)
-				asmPathes[i] = Path.ChangeExtension(asmPathes[i], ".o");
-
-			return asmPathes;
+			foreach (var path in asmPathes)
+				Execute("rgbasm", arg + " -o \"" + Path.ChangeExtension(path, ".o") + "\" \"" + path + "\"");
 		}
-
 
 		static int Execute(in string command, in string arg)
 		{
