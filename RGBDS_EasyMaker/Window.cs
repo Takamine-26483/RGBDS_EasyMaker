@@ -13,7 +13,7 @@ namespace RGBDS_EasyMaker
 {
 	public partial class Window : Form
 	{
-		const string FILENAME = "RgbdsES.ini";
+		const string FILENAME = "RGBDS_EM.ini";
 		
 
 		public Window()

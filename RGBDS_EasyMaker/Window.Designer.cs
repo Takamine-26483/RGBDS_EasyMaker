@@ -60,11 +60,11 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("MS UI Gothic", 14F);
-			this.label1.Location = new System.Drawing.Point(18, 26);
+			this.label1.Location = new System.Drawing.Point(6, 26);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(66, 19);
+			this.label1.Size = new System.Drawing.Size(82, 19);
 			this.label1.TabIndex = 1;
-			this.label1.Text = "rgbasm";
+			this.label1.Text = "rgbasm +";
 			// 
 			// groupBox1
 			// 
@@ -126,21 +126,21 @@
 			// 
 			this.label3.AutoSize = true;
 			this.label3.Font = new System.Drawing.Font("MS UI Gothic", 14F);
-			this.label3.Location = new System.Drawing.Point(18, 58);
+			this.label3.Location = new System.Drawing.Point(6, 58);
 			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(61, 19);
+			this.label3.Size = new System.Drawing.Size(77, 19);
 			this.label3.TabIndex = 3;
-			this.label3.Text = "rgblink";
+			this.label3.Text = "rgblink +";
 			// 
 			// label2
 			// 
 			this.label2.AutoSize = true;
 			this.label2.Font = new System.Drawing.Font("MS UI Gothic", 14F);
-			this.label2.Location = new System.Drawing.Point(18, 90);
+			this.label2.Location = new System.Drawing.Point(6, 90);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(53, 19);
+			this.label2.Size = new System.Drawing.Size(69, 19);
 			this.label2.TabIndex = 2;
-			this.label2.Text = "rgbfix";
+			this.label2.Text = "rgbfix +";
 			// 
 			// btnSaveClose
 			// 
@@ -193,7 +193,7 @@
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(637, 38);
 			this.label5.TabIndex = 2;
-			this.label5.Text = "・rgbasmはカレントディレクトリ内と、\r\n　そこから見えるフォルダ内の全てのasmﾌｧｲﾙ(*.asm or *.s)を対象にアセンブルします";
+			this.label5.Text = "・rgbasmは作業フォルダ内と、\r\n　そこから見えるフォルダ内の全てのasmﾌｧｲﾙ(*.asm or *.s)を対象にアセンブルします";
 			// 
 			// label8
 			// 
@@ -201,9 +201,9 @@
 			this.label8.Font = new System.Drawing.Font("MS UI Gothic", 14F);
 			this.label8.Location = new System.Drawing.Point(18, 26);
 			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(778, 19);
+			this.label8.Size = new System.Drawing.Size(938, 19);
 			this.label8.TabIndex = 1;
-			this.label8.Text = "・このウィンドウで引数を設定し保存して終了→コマンドライン上から/buildを引数にしてこのアプリを実行。";
+			this.label8.Text = "・このｳｨﾝﾄﾞｳで引数を設定し保存（設定は作業ﾌｫﾙﾀﾞに保存される）→ｺﾏﾝﾄﾞﾗｲﾝ上から/buildを引数にしてこのｱﾌﾟﾘを実行。";
 			// 
 			// Window
 			// 
@@ -217,6 +217,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
 			this.Name = "Window";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "RGBDS簡易ビルダー v1.0";
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
